@@ -1,0 +1,29 @@
+name: TerrorPlugin
+version: '${project.version}'
+main: co.terrorsquadmc.terrorplugin.TerrorPlugin
+api-version: 1.18
+authors: [ Yas ]
+description: General-use custom plugin for Terror Squad MC.
+website: https://www.terrorsquad.co/
+commands:
+  god:
+    description: become invincible
+    usage: /<command>
+  feed:
+    description: feeds the player instantly
+    usage: /<command>
+  sendmessage:
+    description: send a message to another player
+    usage: /<command> [player name] [message]
+  points:
+    description: gets the points of the player stored in DB
+    usage: /<command>
+  spawnblock:
+    description: gets the starting point of player in the world
+    usage: /<command>
+  fly:
+    description: enable creative fly mode
+    usage: /<command>
+  book:
+    description: gives book
+    usage: /<command>
