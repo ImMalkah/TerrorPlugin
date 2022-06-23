@@ -50,7 +50,7 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.3.1</version>
                 <configuration>
-                    <outputDirectory>C:\Users\fasti\Desktop\Test World\plugins</outputDirectory>
+                    <outputDirectory>C:\Users\fasti\Desktop\Test World\pluginss</outputDirectory>
                 </configuration>
             </plugin>
         </plugins>
