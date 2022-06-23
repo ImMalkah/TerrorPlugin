@@ -28,7 +28,7 @@ public class Book {
         bookMeta.setAuthor(ChatColor.DARK_PURPLE + author);
         bookMeta.setTitle(ChatColor.RED + "" + ChatColor.BOLD + title);
 
-        addPage(ChatColor.GOLD + "" + ChatColor.BOLD + "Welcome to Terror Squad SMP!\n" + ChatColor.RESET + "\nThe purpose of this book is to help you get started with useful commands. " +
+        addPage(ChatColor.GOLD + "" + ChatColor.BOLD + "Welcome to Terror Squad SMP.\n" + ChatColor.RESET + "\nThe purpose of this book is to help you get started with useful commands. " +
                 "Page 2 shows you how to claim your land so that you can protect yourself and your loot against griefers. Go there now!");
         addPage("""
                     Step 1) Grab a golden shovel and a stick
