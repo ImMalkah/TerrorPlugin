@@ -73,8 +73,9 @@ public class SQLUtil {
             long blocksBroken = resultSet.getLong("blocks_broken");
             int deaths = resultSet.getInt("deaths");
             String name = resultSet.getString("name");
+            Date lastLogin = resultSet.getDate("last_login");
 
-            return new PlayerStats(uuid, kills, firstLogin, blocksBroken, deaths, name);
+            return new PlayerStats(uuid, kills, firstLogin, blocksBroken, deaths, name, lastLogin);
         }
 
         return null;
@@ -93,12 +94,13 @@ public class SQLUtil {
     }
 
     public void updateStats(PlayerStats stats) throws SQLException {
-        PreparedStatement statement = connection.prepareStatement("UPDATE player_stats SET kills = ?, blocks_broken = ?, deaths = ?, name = ? WHERE uuid = ?");
+        PreparedStatement statement = connection.prepareStatement("UPDATE player_stats SET kills = ?, blocks_broken = ?, deaths = ?, name = ?, last_login = ? WHERE uuid = ?");
         statement.setInt(1, stats.getKills());
         statement.setLong(2, stats.getBlocksBroken());
         statement.setInt(3, stats.getDeaths());
         statement.setString(4, stats.getName());
-        statement.setString(5, stats.getUuid());
+        statement.setDate(5, new java.sql.Date(stats.getLastLogin().getTime()));
+        statement.setString(6, stats.getUuid());
 
         statement.executeUpdate();
     }
@@ -118,6 +120,4 @@ public class SQLUtil {
             exception.printStackTrace();
         }
     }
-
-
 }

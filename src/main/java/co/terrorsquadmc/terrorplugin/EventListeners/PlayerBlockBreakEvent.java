@@ -20,4 +20,4 @@ public class PlayerBlockBreakEvent implements Listener {
         stats.setBlocksBroken(stats.getBlocksBroken() + 1);
         TerrorPlugin.getConnection().updateStats(stats);
     }
-    }
+}

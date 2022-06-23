@@ -5,16 +5,17 @@ import java.util.Date;
 public class PlayerStats {
     private String uuid, name;
     private int kills, deaths;
-    private Date firstLogin;
+    private Date firstLogin, lastLogin;
     private long blocksBroken;
 
-    public PlayerStats(String uuid, int kills, Date firstLogin, long blocksBroken, int deaths, String name) {
+    public PlayerStats(String uuid, int kills, Date firstLogin, long blocksBroken, int deaths, String name, Date lastLogin) {
         this.uuid = uuid;
         this.kills = kills;
         this.firstLogin = firstLogin;
         this.blocksBroken = blocksBroken;
         this.deaths = deaths;
         this.name = name;
+        this.lastLogin = lastLogin;
     }
 
     public String getUuid() {
@@ -63,5 +64,13 @@ public class PlayerStats {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Date getLastLogin() {
+        return lastLogin;
+    }
+
+    public void setLastLogin(Date lastLogin) {
+        this.lastLogin = lastLogin;
     }
 }
