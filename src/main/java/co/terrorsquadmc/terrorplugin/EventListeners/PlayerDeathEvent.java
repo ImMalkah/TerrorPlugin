@@ -22,8 +22,6 @@ public class PlayerDeathEvent implements Listener
         EntityDamageEvent entityDamageEvent = player.getLastDamageCause();
         Location playerLocation = player.getLocation();
 
-
-
         if (entityDamageEvent instanceof EntityDamageByEntityEvent entityEvent)
         {
             Entity entity = entityEvent.getDamager();
@@ -36,14 +34,11 @@ public class PlayerDeathEvent implements Listener
 
                 setSqlDeaths(player);
             }
-            else if (entity.getType() == EntityType.PLAYER)
-            {
+            else if (entity.getType() == EntityType.PLAYER) {
                 event.setDeathMessage(player.getName() + " was killed by " + killer.getDisplayName());
-
                 setSqlDeaths(player);
             }
-            else
-            {
+            else {
                 event.setDeathMessage(new enumOutput().getEnum("info") + player.getDisplayName() + " died by " + entity.getName() + " " +
                         "X: " + playerLocation.getBlockX() + " " +
                         "Y: " + playerLocation.getBlockY() + " " +
@@ -51,9 +46,7 @@ public class PlayerDeathEvent implements Listener
 
                 setSqlDeaths(player);
             }
-
         }
-
     }
 
     private void setSqlDeaths(Player player) throws SQLException {

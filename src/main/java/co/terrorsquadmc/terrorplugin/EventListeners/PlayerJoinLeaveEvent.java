@@ -61,6 +61,5 @@ public class PlayerJoinLeaveEvent implements Listener
         TerrorPlugin.getConnection().updateStats(stats);
     }
 }
-
 //displayname - shows both group and name in chat
 //username - shows only username in chat

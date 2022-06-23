@@ -73,4 +73,5 @@ public class PlayerStats {
     public void setLastLogin(Date lastLogin) {
         this.lastLogin = lastLogin;
     }
+
 }
