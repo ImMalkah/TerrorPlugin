@@ -14,7 +14,7 @@ public final class TerrorPlugin extends JavaPlugin implements Listener {
     @Override
     public void onEnable()
     {
-        System.out.println("Terror enabled. Hello...");
+        System.out.println("Terror enabled. Hello!");
         plugin = this;
 
         connection = new SQLUtil("mysql.mcprohosting.com", "3306",

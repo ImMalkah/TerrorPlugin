@@ -50,7 +50,7 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.3.1</version>
                 <configuration>
-                    <outputDirectory>/Users/fadiyas/Desktop/mc test/plugins</outputDirectory>
+                    <outputDirectory>/Users/fadiyas/Desktop/mc test/pluginss</outputDirectory>
                 </configuration>
             </plugin>
         </plugins>
