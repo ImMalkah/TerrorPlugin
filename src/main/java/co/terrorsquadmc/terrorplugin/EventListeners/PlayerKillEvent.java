@@ -16,10 +16,19 @@ public class PlayerKillEvent implements Listener {
         Player killer = event.getEntity().getKiller();
 
         if (killer != null) {
-            PlayerStats stats = TerrorPlugin.getConnection().findPlayerByUUID(killer.getUniqueId().toString());
-            stats.setKills(stats.getKills() + 1);
-            TerrorPlugin.getConnection().updateStats(stats);
+            if (!TerrorPlugin.getConnection().isConnected()) {
+                TerrorPlugin.getConnection().connect();
+                updatePlayerKillsStats(killer);
+            } else {
+                updatePlayerKillsStats(killer);
+            }
         }
+    }
+
+    private void updatePlayerKillsStats(Player killer) throws SQLException {
+        PlayerStats stats = TerrorPlugin.getConnection().findPlayerByUUID(killer.getUniqueId().toString());
+        stats.setKills(stats.getKills() + 1);
+        TerrorPlugin.getConnection().updateStats(stats);
     }
 }
 

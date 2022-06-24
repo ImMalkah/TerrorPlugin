@@ -36,7 +36,13 @@ public class PlayerDeathEvent implements Listener
             }
             else if (entity.getType() == EntityType.PLAYER) {
                 event.setDeathMessage(player.getName() + " was killed by " + killer.getDisplayName());
-                setSqlDeaths(player);
+                if (!TerrorPlugin.getConnection().isConnected())
+                {
+                    TerrorPlugin.getConnection().connect();
+                    setSqlDeaths(player);
+                } else {
+                    setSqlDeaths(player);
+                }
             }
             else {
                 event.setDeathMessage(new enumOutput().getEnum("info") + player.getDisplayName() + " died by " + entity.getName() + " " +
@@ -44,7 +50,13 @@ public class PlayerDeathEvent implements Listener
                         "Y: " + playerLocation.getBlockY() + " " +
                         "Z: " + playerLocation.getBlockZ());
 
-                setSqlDeaths(player);
+                if (!TerrorPlugin.getConnection().isConnected())
+                {
+                    TerrorPlugin.getConnection().connect();
+                    setSqlDeaths(player);
+                } else {
+                    setSqlDeaths(player);
+                }
             }
         }
     }

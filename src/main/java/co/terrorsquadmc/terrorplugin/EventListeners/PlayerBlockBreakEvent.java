@@ -15,6 +15,17 @@ public class PlayerBlockBreakEvent implements Listener {
     @EventHandler
     public void onPlayerBreakBlock(BlockBreakEvent event) throws SQLException {
         Player player = event.getPlayer();
+
+        if (!TerrorPlugin.getConnection().isConnected())
+        {
+            TerrorPlugin.getConnection().connect();
+            updatePlayerBlocksBroken(player);
+        } else {
+            updatePlayerBlocksBroken(player);
+        }
+    }
+
+    private void updatePlayerBlocksBroken(Player player) throws SQLException {
         PlayerStats stats = TerrorPlugin.getConnection().findPlayerByUUID(player.getUniqueId().toString());
 
         stats.setBlocksBroken(stats.getBlocksBroken() + 1);
