@@ -2,7 +2,6 @@ package co.terrorsquadmc.terrorplugin.Commands;
 
 import co.terrorsquadmc.terrorplugin.enumOutput;
 import org.bukkit.Bukkit;
-import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -33,7 +32,6 @@ public class FeedCommand implements CommandExecutor
                         target.sendMessage(new enumOutput().getEnum("command") + player.getName() + " has refilled your hunger and saturation.");
                         player.sendMessage(new enumOutput().getEnum("command") + "You have refilled " + target.getName() + "'s hunger and saturation.");
                     }
-
                 }
             }
             else

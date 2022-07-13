@@ -27,3 +27,6 @@ commands:
   book:
     description: gives book
     usage: /<command>
+  stats:
+    description: shows some user stats
+    usage: /<command>

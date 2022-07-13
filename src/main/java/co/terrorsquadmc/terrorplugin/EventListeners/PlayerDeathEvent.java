@@ -1,7 +1,7 @@
 package co.terrorsquadmc.terrorplugin.EventListeners;
 
-import co.terrorsquadmc.terrorplugin.SQL.PlayerStats;
-import co.terrorsquadmc.terrorplugin.TerrorPlugin;
+import co.terrorsquadmc.terrorplugin.Utilities.GsonOperations;
+import co.terrorsquadmc.terrorplugin.Utilities.PlayerStats;
 import co.terrorsquadmc.terrorplugin.enumOutput;
 import org.bukkit.Location;
 import org.bukkit.entity.*;
@@ -10,17 +10,19 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 
-import java.sql.SQLException;
+import java.io.IOException;
 
 public class PlayerDeathEvent implements Listener
 {
+    GsonOperations operations;
 
     @EventHandler
-    public void onPlayerDeath(org.bukkit.event.entity.PlayerDeathEvent event) throws SQLException {
+    public void onPlayerDeath(org.bukkit.event.entity.PlayerDeathEvent event) throws IOException {
         Player player = event.getEntity();
         Player killer = player.getKiller();
         EntityDamageEvent entityDamageEvent = player.getLastDamageCause();
         Location playerLocation = player.getLocation();
+
 
         if (entityDamageEvent instanceof EntityDamageByEntityEvent entityEvent)
         {
@@ -32,38 +34,29 @@ public class PlayerDeathEvent implements Listener
                         "Y: " + playerLocation.getBlockY() + " " +
                         "Z: " + playerLocation.getBlockZ());
 
-                setSqlDeaths(player);
+                updateStatsDeaths(player);
             }
             else if (entity.getType() == EntityType.PLAYER) {
-                event.setDeathMessage(player.getName() + " was killed by " + killer.getDisplayName());
-                if (!TerrorPlugin.getConnection().isConnected())
-                {
-                    TerrorPlugin.getConnection().connect();
-                    setSqlDeaths(player);
-                } else {
-                    setSqlDeaths(player);
-                }
+                event.setDeathMessage(player.getName() + " was killed by " + killer.getName());
+
+                updateStatsDeaths(player);
             }
             else {
-                event.setDeathMessage(new enumOutput().getEnum("info") + player.getDisplayName() + " died by " + entity.getName() + " " +
+                event.setDeathMessage(new enumOutput().getEnum("info") + player.getName() + " died by " + entity.getName() + " " +
                         "X: " + playerLocation.getBlockX() + " " +
                         "Y: " + playerLocation.getBlockY() + " " +
                         "Z: " + playerLocation.getBlockZ());
 
-                if (!TerrorPlugin.getConnection().isConnected())
-                {
-                    TerrorPlugin.getConnection().connect();
-                    setSqlDeaths(player);
-                } else {
-                    setSqlDeaths(player);
-                }
+                updateStatsDeaths(player);
             }
         }
     }
 
-    private void setSqlDeaths(Player player) throws SQLException {
-        PlayerStats stats = TerrorPlugin.getConnection().findPlayerByUUID(player.getUniqueId().toString());
+    private void updateStatsDeaths(Player player) throws IOException {
+        operations = new GsonOperations();
+        PlayerStats stats = operations.getFromJson(player.getName(), player.getUniqueId().toString());
+
         stats.setDeaths(stats.getDeaths() + 1);
-        TerrorPlugin.getConnection().updateStats(stats);
+        operations.writeToJsonFile(stats, true);
     }
 }
