@@ -2,6 +2,7 @@ package co.terrorsquadmc.terrorplugin.Commands;
 
 import co.terrorsquadmc.terrorplugin.Utilities.GsonOperations;
 import co.terrorsquadmc.terrorplugin.Utilities.PlayerStats;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -22,7 +23,11 @@ public class Stats implements CommandExecutor {
                 PlayerStats stats = operations.getFromJson(player.getName(), player.getUniqueId().toString());
                 firstLoginDate = DateFor.format(stats.getFirstLogin());
                 lastLoginDate = DateFor.format(stats.getLastLogin());
-                player.sendMessage("Kills: " + stats.getKills() + " -- Deaths: " + stats.getDeaths() + " -- Join Date: " + firstLoginDate + " -- Last Login: " + lastLoginDate);
+                player.sendMessage(ChatColor.GOLD + "Kills: " + ChatColor.RESET + stats.getKills()
+                        + ChatColor.GOLD + " -- Deaths: " + ChatColor.RESET + stats.getDeaths()
+                        + ChatColor.GOLD + " -- Join Date: " + ChatColor.RESET + firstLoginDate
+                        + ChatColor.GOLD + " -- Last Login: " + ChatColor.RESET + lastLoginDate
+                        + ChatColor.GOLD + " -- Blocks Broken: " + ChatColor.RESET + stats.getBlocksBroken());
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 System.out.println("File not found!");
