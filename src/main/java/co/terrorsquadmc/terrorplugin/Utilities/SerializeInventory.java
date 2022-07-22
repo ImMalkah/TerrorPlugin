@@ -41,7 +41,7 @@ public class SerializeInventory {
 
             for (ItemStack item : items) {
                 if (item != null) {
-                    dataOutput.writeObject(item.serialize());
+                    dataOutput.writeObject(item.serializeAsBytes());
                 } else {
                     dataOutput.writeObject(null);
                 }
@@ -71,7 +71,7 @@ public class SerializeInventory {
                 byte[] stack = (byte[]) dataInput.readObject();
 
                 if (stack != null) {
-                    items[Index] = ItemStack.deserialize(stack);
+                    items[Index] = ItemStack.deserializeBytes(stack);
                 } else {
                     items[Index] = null;
                 }
