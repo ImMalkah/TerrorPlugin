@@ -1,5 +1,6 @@
 package co.terrorsquadmc.terrorplugin.Commands;
 
+import co.terrorsquadmc.terrorplugin.TerrorPlugin;
 import co.terrorsquadmc.terrorplugin.Utilities.SerializeInventory;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -15,11 +16,14 @@ public class SerializeInventoryUsage extends SerializeInventory implements Comma
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
 
+        File file;
+
         if (sender instanceof Player player && args[0].equalsIgnoreCase("writeinv")) {
             Inventory inv = player.getInventory();
             String str = itemStackArrayToBase64(inv.getContents());
             try {
-                FileWriter writer = new FileWriter("playerinventory.txt");
+                file = new File(TerrorPlugin.getPlugin().getDataFolder().getAbsolutePath(), "playerinventory.txt");
+                FileWriter writer = new FileWriter(file);
                 writer.write(str);
                 writer.close();
             } catch (IOException e) {
@@ -30,7 +34,8 @@ public class SerializeInventoryUsage extends SerializeInventory implements Comma
 
             Inventory inv = player.getInventory();
             try {
-                FileReader reader = new FileReader("playerinventory.txt");
+                file = new File(TerrorPlugin.getPlugin().getDataFolder().getAbsolutePath(), "playerinventory.txt");
+                FileReader reader = new FileReader(file);
                 BufferedReader bufferedReader = new BufferedReader(reader);
                 String str = "";
 

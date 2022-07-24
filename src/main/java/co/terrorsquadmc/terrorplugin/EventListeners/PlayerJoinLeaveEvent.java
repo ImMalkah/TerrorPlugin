@@ -5,6 +5,7 @@ import co.terrorsquadmc.terrorplugin.Utilities.Book;
 import co.terrorsquadmc.terrorplugin.Utilities.GsonOperations;
 import co.terrorsquadmc.terrorplugin.Utilities.PlayerStats;
 import co.terrorsquadmc.terrorplugin.enumOutput;
+import net.kyori.adventure.text.Component;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -26,8 +27,7 @@ public class PlayerJoinLeaveEvent implements Listener
         operations = new GsonOperations();
 
         if (player.hasPlayedBefore()) {
-            event.setJoinMessage(new enumOutput().getEnum("info") + ChatColor.RED + player.getDisplayName() + ChatColor.RESET +
-                    " has joined the dark side");
+            event.joinMessage(Component.text("[" + ChatColor.GREEN + "+" + ChatColor.RESET + "]" + " " + player.getName()));
             Bukkit.getScheduler().scheduleSyncDelayedTask(TerrorPlugin.getPlugin(), () -> player.playSound(player.getLocation(), Sound.BLOCK_AMETHYST_BLOCK_CHIME, 5.0F, 1.0F), 50L);
 
             stats = operations.getFromJson(player.getName(), player.getUniqueId().toString());
@@ -39,8 +39,7 @@ public class PlayerJoinLeaveEvent implements Listener
             Book book = new Book("Malkah", "Getting Started", player);
             book.initializeBook();
 
-            event.setJoinMessage(new enumOutput().getEnum("info") + ChatColor.RED + player.getDisplayName() + ChatColor.RESET +
-                    " has joined the terrorism for the first time. Allahu Akbar!");
+            event.joinMessage(Component.text(ChatColor.RED + player.getName() + ChatColor.RESET + " has joined the terrorism for the first time!"));
 
             stats = new PlayerStats(player.getUniqueId().toString(), player.getName(), 0, 0, 0, new Date(), new Date(), null);
             operations.createJsonFile(player.getName(), player.getUniqueId().toString());
@@ -57,7 +56,7 @@ public class PlayerJoinLeaveEvent implements Listener
         stats.setLastLogout(new Date());
         operations.writeToJsonFile(stats, true);
 
-        event.setQuitMessage(new enumOutput().getEnum("info") + ChatColor.RED + player.getDisplayName() + ChatColor.RESET + " has left the dark side");
+        event.quitMessage(Component.text("[" + ChatColor.RED + "-" + ChatColor.RESET + "]" + " " + player.getName()));
     }
 }
 //displayname - shows both group and name in chat
