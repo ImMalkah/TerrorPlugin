@@ -30,3 +30,6 @@ commands:
   stats:
     description: shows some user stats
     usage: /<command>
+  serializeinventory:
+    description: serializes the inventory
+    usage: /<command>
