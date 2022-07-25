@@ -16,6 +16,6 @@ public class GiveBookCommand implements CommandExecutor
             Book book = new Book("Malkah", "Getting Started", player);
             book.initializeBook();
         }
-        return false;
+        return true;
     }
 }
