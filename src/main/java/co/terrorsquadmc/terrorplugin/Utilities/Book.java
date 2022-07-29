@@ -31,7 +31,7 @@ public class Book {
         addPage(ChatColor.GOLD + "" + ChatColor.BOLD + "Welcome to Terror Squad SMP!\n" + ChatColor.RESET + "\nThe purpose of this book is to help you get started with useful commands. " +
                 "Page 2 shows you how to claim your land so that you can protect yourself and your loot against griefers. Go there now!");
         addPage("""
-                    Step 1) Grab a golden shovel and a stick
+                    Step 1) Grab a wooden shovel and a stick
                     
                     Step 2) Right click a corner with the shovel to mark the start of the claim
                     

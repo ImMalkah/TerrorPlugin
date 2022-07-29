@@ -13,7 +13,7 @@ public class GiveBookCommand implements CommandExecutor
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args)
     {
         if (sender instanceof Player player) {
-            Book book = new Book("Malkah", "Getting Started", player);
+            Book book = new Book("Malkah", "How to Claim Land", player);
             book.initializeBook();
         }
         return true;
