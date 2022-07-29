@@ -26,6 +26,7 @@ public final class TerrorPlugin extends JavaPlugin implements Listener {
         getCommand("book").setExecutor(new GiveBookCommand());
         getCommand("stats").setExecutor(new Stats());
         getCommand("serializeinventory").setExecutor(new SerializeInventoryUsage());
+        getCommand("claim").setExecutor(new Claim());
 
         getConfig().options().copyDefaults();
         saveDefaultConfig();

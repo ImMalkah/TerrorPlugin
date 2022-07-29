@@ -48,6 +48,6 @@ public class SerializeInventoryUsage extends SerializeInventory implements Comma
                 e.printStackTrace();
             }
         }
-        return false;
+        return true;
     }
 }

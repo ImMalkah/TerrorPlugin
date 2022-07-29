@@ -33,3 +33,6 @@ commands:
   serializeinventory:
     description: serializes the inventory
     usage: /<command>
+  claim:
+    description: buy a claim block
+    usage: /<command>
