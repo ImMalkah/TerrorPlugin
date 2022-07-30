@@ -45,11 +45,13 @@ public class PlayerJoinLeaveEvent implements Listener
             operations.createJsonFile(player.getName(), player.getUniqueId().toString());
             operations.writeToJsonFile(stats, true);
         }
+        player.performCommand("mvtp PixeledHub");
     }
 
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent event) throws IOException {
         Player player = event.getPlayer();
+        player.performCommand("mvtp PixeledHub");
         operations = new GsonOperations();
         stats = operations.getFromJson(player.getName(), player.getUniqueId().toString());
 

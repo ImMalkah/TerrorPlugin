@@ -36,3 +36,6 @@ commands:
   claim:
     description: buy a claim block
     usage: /<command>
+  hub:
+    description: goes to the hub
+    usage: /<command>
